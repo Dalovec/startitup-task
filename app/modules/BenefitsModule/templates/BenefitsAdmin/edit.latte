@@ -5,21 +5,9 @@
 
     <div class="col-md-12">
         <h1>
-            Benefity
-            <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-sliders-h"></i>  {_'segment.new.header'}</a>
+            Benefity - {$benefit->name}
         </h1>
-        <div class="row">
-            <div class="col-sm-6 col-md-2">
-                <div class="thumbnail">
-                    <img src="{$benefit->photo}" alt="{$benefit->name}" style="width: 300px; height: 200px; padding: 20px;">
-                    <div class="caption">
-                        <h3>{$benefit->name}</h3>
-                        <p>{$benefit->code}</p>
-                        <p><a href="/benefits/edit/{$benefit->id}" class="btn btn-success" role="button">Edit</a> <a href="#" class="btn btn-danger" role="button">Delete</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {control editBenefitForm}
         <hr>
     </div>
 </div>
