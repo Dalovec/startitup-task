@@ -23,5 +23,6 @@ class BenefitsModule extends \Crm\ApplicationModule\CrmModule
     public function registerRoutes(\Nette\Application\Routers\RouteList $router): void
     {
         $router->addRoute('/benefits', 'Benefits:BenefitsAdmin:default');
+        $router->addRoute('/benefits/edit/<id>', 'Benefits:BenefitsAdmin:edit');
     }
 }

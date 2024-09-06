@@ -15,8 +15,15 @@ class BenefitsAdminPresenter extends \Crm\AdminModule\Presenters\AdminPresenter
         $this->benefitsRepository = $benefitsRepository;
     }
 
-    public function renderDefault()
+    public function renderDefault(): void
     {
-        // in Admin presenters even empty render methods are necessary
+        $this->template->timeNow = new \DateTime();
+        $this->template->benefits = $this->benefitsRepository->all();
     }
+
+    public function renderEdit($id): void
+    {
+        $this->template->benefit = $this->benefitsRepository->find($id);
+    }
+
 }

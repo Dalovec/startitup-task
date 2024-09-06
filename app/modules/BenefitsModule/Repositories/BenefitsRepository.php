@@ -22,4 +22,10 @@ class BenefitsRepository extends Repository
     {
         return $this->getTable()->where('name IS NOT NULL');
     }
+
+    final public function find($id): ?\Crm\ApplicationModule\Models\Database\ActiveRow
+    {
+        $result = $this->getTable()->where(['id' => $id])->fetch();
+        return $result;
+    }
 }
