@@ -11,7 +11,8 @@ class BenefitsModuleInit extends AbstractMigration
         $benefits
             ->addColumn('name', 'string', ['limit' => 255])
             ->addColumn('code', 'string', ['limit' => 255])
-            ->addColumn('photo', 'string')
+            ->addColumn('description', 'text')
+            ->addColumn('photo', 'text')
             ->addColumn('start_date', 'datetime')
             ->addColumn('end_date', 'datetime')
             ->addTimestamps()
@@ -22,6 +23,7 @@ class BenefitsModuleInit extends AbstractMigration
         $benefitsUser
             ->addColumn('user_id', 'integer')
             ->addColumn('benefit_id', 'integer')
+            ->addIndex(['user_id'], ['unique' => true])
             ->addTimestamps()
             ->create();
     }

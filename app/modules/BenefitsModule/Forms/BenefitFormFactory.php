@@ -22,6 +22,7 @@ class BenefitFormFactory
         $form->addHidden('id');
         $form->addText('name', 'Name');
         $form->addText('code', 'Code');
+        $form->addTextArea('description', 'Description');
         $form->addText('photo', 'Photo Url');
         $form->addDateTime('start_date', 'Start Date');
         $form->addDateTime('end_date', 'End Date');
@@ -32,6 +33,7 @@ class BenefitFormFactory
                 'id' => $benefit->id,
                 'name' => $benefit->name,
                 'code' => $benefit->code,
+                'description' => $benefit->description,
                 'photo' => $benefit->photo,
                 'start_date' => $benefit->start_date,
                 'end_date' => $benefit->end_date,

@@ -98,6 +98,7 @@ database:
 
 services:
 	benefitsRepository: Crm\BenefitsModule\Repositories\BenefitsRepository
+	userBenefitsRepository: Crm\BenefitsModule\Repositories\UserBenefitsRepository
 	benefitFormFactory: Crm\BenefitsModule\Forms\BenefitFormFactory
 
 	moduleManager:
