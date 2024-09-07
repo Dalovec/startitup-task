@@ -13,7 +13,7 @@
                         <div class="caption">
                             <h3 style="font-weight: 900">{$benefit->name}{if $isClaimed && $isClaimed === $benefit->id} - <span class="text-success"> Claimed </span>{/if}</h3>
                             <p class="thumbnail">{$benefit->description}</p>
-                            <h3 n:if="$isClaimed && $isClaimed === $benefit->id" style="font-weight: 900;">Your benefit code: <span class="text-center thumbnail">{$benefit->code}</span></h3>
+                            <h4 n:if="$isClaimed && $isClaimed === $benefit->id" style="font-weight: 900;">Your benefit code: <span class="text-center thumbnail" style="border: 1px solid #5cb85c">{$benefit->code}</span></h4>
                             <p><a n:href="claim! $benefit->id" class="btn btn-success" role="button" n:if="!$isClaimed">Claim</a></p>
                         </div>
                     </div>
