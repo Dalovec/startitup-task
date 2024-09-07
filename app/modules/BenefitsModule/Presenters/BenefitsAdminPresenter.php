@@ -3,8 +3,15 @@
 namespace Crm\BenefitsModule\Presenters;
 use Crm\BenefitsModule\Forms\BenefitFormFactory;
 use Crm\BenefitsModule\Repositories\BenefitsRepository;
-use Tomaj\Form\Renderer\BootstrapRenderer;
+use Nette\Application\AbortException;
+use Nette\Forms\Form;
 
+/**
+ * Class BenefitsAdminPresenter
+ *
+ * Presenter for the admin endpoints of the benefits module.
+ *
+ */
 class BenefitsAdminPresenter extends \Crm\AdminModule\Presenters\AdminPresenter
 {
     private BenefitsRepository $benefitsRepository;
@@ -20,37 +27,78 @@ class BenefitsAdminPresenter extends \Crm\AdminModule\Presenters\AdminPresenter
         $this->benefitFormFactory = $benefitFormFactory;
     }
 
+    /**
+     * Render the default view.
+     *
+     * Template: default.latte
+     *
+     * This view shows a list of all non-deleted benefits.
+     *
+     * @return void
+     */
     public function renderDefault(): void
     {
         $this->template->timeNow = new \DateTime();
         $this->template->benefits = $this->benefitsRepository->all();
     }
 
-    public function renderEdit($id): void
+    /**
+     * Render the edit view.
+     *
+     * Template: edit.latte
+     *
+     * Allows editing of a benefit.
+     *
+     * @param int $id The benefit id.
+     *
+     * @return void
+     */
+    public function renderEdit(int $id): void
     {
         $this->params['id'] = $id;
         $this->template->benefit = $this->benefitsRepository->find($id);
     }
 
+    /**
+     * Render the new view.
+     *
+     * Template: new.latte
+     *
+     * Allows creating a new benefit.
+     *
+     * @return void
+     */
     public function renderNew(): void
     {
         $this->template->timeNow = new \DateTime();
     }
 
-    protected function createComponentBenefitForm()
+    /**
+     * Create the benefit form component.
+     *
+     * @return Form
+     */
+    protected function createComponentBenefitForm(): Form
     {
         $form = $this->benefitFormFactory->create();
 
         $this->benefitFormFactory->onSave = function($benefit) {
-//            dump($benefit);
-//            $this->flashMessage("$benefit->name Benefit created", 'info');
+            $this->flashMessage("$benefit->name Benefit created", 'info');
             $this->redirect(':Benefits:BenefitsAdmin:default');
         };
 
         return $form;
     }
 
-    public function handleDelete($id):void
+    /**
+     * Handle the delete action.
+     *
+     * @param int $id The benefit id.
+     *
+     * @return void
+     * @throws AbortException
+     */
+    public function handleDelete(int $id): void
     {
         $row = $this->benefitsRepository->find($id);
         $this->benefitsRepository->delete($row);
@@ -58,7 +106,12 @@ class BenefitsAdminPresenter extends \Crm\AdminModule\Presenters\AdminPresenter
         $this->redirect(':Benefits:BenefitsAdmin:default');
     }
 
-    protected function createComponentEditBenefitForm()
+    /**
+     * Create the edit benefit form component.
+     *
+     * @return Form
+     */
+    protected function createComponentEditBenefitForm(): Form
     {
         $form = $this->benefitFormFactory->create($this->params['id']);
 

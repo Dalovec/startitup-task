@@ -2,6 +2,13 @@
 
 use Phinx\Migration\AbstractMigration;
 
+/**
+ * Class BenefitsModuleInit
+ *
+ * This migration creates the benefits table and benefits_user table.
+ * Written in Phinx.
+ *
+ */
 class BenefitsModuleInit extends AbstractMigration
 {
     public function change()

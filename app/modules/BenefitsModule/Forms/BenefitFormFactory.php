@@ -3,8 +3,18 @@
 namespace Crm\BenefitsModule\Forms;
 
 use Crm\BenefitsModule\Repositories\BenefitsRepository;
+use Exception;
 use Nette\Application\UI\Form;
+use Nette\Forms\Validator;
+use Nette\Utils\ArrayHash;
 
+/**
+ * Class BenefitFormFactory
+ *
+ * This class is used to create the benefit form.
+ * It is used to create both new and edit forms.
+ *
+ */
 class BenefitFormFactory
 {
     public $onUpdate;
@@ -14,19 +24,38 @@ class BenefitFormFactory
     ){
     }
 
-    public function create($id = null)
+    /**
+     * Create the benefit form.
+     *
+     * Handles both new and edit forms.
+     *
+     * @param int|null $id The benefit id.
+     *
+     * @return Form
+     */
+    public function create($id = null): Form
     {
         $form = new Form();
 
         $form->setRenderer(new \Tomaj\Form\Renderer\BootstrapRenderer());
         $form->addHidden('id');
-        $form->addText('name', 'Name');
-        $form->addText('code', 'Code');
-        $form->addTextArea('description', 'Description');
-        $form->addText('photo', 'Photo Url');
-        $form->addDateTime('start_date', 'Start Date');
-        $form->addDateTime('end_date', 'End Date');
+        $form->addText('name', 'Name')
+            ->setMaxLength(255)
+            ->setRequired();
+        $form->addText('code', 'Code')
+            ->setMaxLength(255)
+            ->setRequired();
+        $form->addTextArea('description', 'Description')
+            ->setMaxLength(1000)
+            ->setNullable();
+        $form->addText('photo', 'Photo Url')
+            ->setRequired();
+        $form->addDateTime('start_date', 'Start Date')
+            ->setRequired();
+        $form->addDateTime('end_date', 'End Date')
+            ->setRequired();
 
+        // If the benefit exists, set the values from the database.
         if ($id) {
             $benefit = $this->benefitsRepository->find($id);
             $form->setDefaults([
@@ -46,7 +75,16 @@ class BenefitFormFactory
         return $form;
     }
 
-    public function formSucceeded($form, $values)
+    /**
+     * Handle the form submission.
+     *
+     * @param $form The form.
+     * @param ArrayHash|array $values The form values.
+     *
+     * @return void
+     * @throws Exception
+     */
+    public function formSucceeded($form, $values): void
     {
         $id = $values['id'];
         if ($id){

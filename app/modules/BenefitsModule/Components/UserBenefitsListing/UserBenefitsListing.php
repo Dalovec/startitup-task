@@ -15,7 +15,7 @@ use Crm\BenefitsModule\Repositories\UserBenefitsRepository;
  */
 class UserBenefitsListing extends BaseLazyWidget
 {
-    private $templateName = 'demo.latte';
+    private $templateName = 'user_benefits_listing.latte';
     private $benefitsRepository;
     private $userBenefitsRepository;
     private $lazyWidgetManager;
@@ -31,7 +31,7 @@ class UserBenefitsListing extends BaseLazyWidget
     }
     public function identifier()
     {
-        return 'demowidget';
+        return 'userBenefits';
     }
 
     public function header($id = '')
@@ -39,7 +39,14 @@ class UserBenefitsListing extends BaseLazyWidget
         return 'Benefits';
     }
 
-    public function render($id)
+    /**
+     * Render the benefits.
+     *
+     * @param int $id The user id.
+     *
+     * @return void
+     */
+    public function render($id): void
     {
         $this->template->setFile(__DIR__ . DIRECTORY_SEPARATOR . $this->templateName);
         if ($this->userBenefitsRepository->isClaimed($id)) {
@@ -49,7 +56,14 @@ class UserBenefitsListing extends BaseLazyWidget
         $this->template->render();
     }
 
-    public function handleUnclaim($id)
+    /**
+     * Handle the unclaim action.
+     *
+     * @param int $id The user id.
+     *
+     * @return void
+     */
+    public function handleUnclaim($id): void
     {
         $this->userBenefitsRepository->resetUser($id);
     }

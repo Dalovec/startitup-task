@@ -6,6 +6,12 @@ use Crm\ApplicationModule\Presenters\FrontendPresenter;
 use Crm\BenefitsModule\Repositories\BenefitsRepository;
 use Crm\BenefitsModule\Repositories\UserBenefitsRepository;
 
+/**
+ * Class BenefitsPresenter
+ *
+ * Presenter for the frontend endpoints of the benefits module.
+ *
+ */
 class BenefitsPresenter extends FrontendPresenter
 {
     private $benefitsRepository;
@@ -20,14 +26,29 @@ class BenefitsPresenter extends FrontendPresenter
         $this->benefitsRepository = $benefitsRepository;
         $this->userBenefitsRepository = $userBenefitsRepository;
     }
-    public function startup()
+
+    /**
+     * Only allow logged in users to access this presenter.
+     *
+     * @return void
+     */
+    public function startup(): void
     {
         $this->onlyLoggedIn();
 
         parent::startup();
     }
 
-    public function renderDefault()
+    /**
+     * Render the default view.
+     *
+     * Template: default.latte
+     *
+     * This view shows a list of all non-deleted benefits and active benefits.
+     *
+     * @return void
+     */
+    public function renderDefault(): void
     {
         $this->template->benefits = $this->benefitsRepository->all();
         $this->template->timeNow = new \DateTime();
@@ -36,7 +57,14 @@ class BenefitsPresenter extends FrontendPresenter
         $this->template->isClaimed = $this->userBenefitsRepository->isClaimed($userId);
     }
 
-    public function handleClaim($benefitId)
+    /**
+     * Handle the claim action.
+     *
+     * @param int $benefitId The benefit id.
+     *
+     * @return void
+     */
+    public function handleClaim(int $benefitId): void
     {
         $userId = $this->getUser()->id;
         $this->userBenefitsRepository->add($userId, $benefitId);
