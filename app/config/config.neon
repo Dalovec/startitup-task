@@ -99,7 +99,9 @@ database:
 services:
 	benefitsRepository: Crm\BenefitsModule\Repositories\BenefitsRepository
 	benefitFormFactory: Crm\BenefitsModule\Forms\BenefitFormFactory
+
 	moduleManager:
 		setup:
 			- addModule(Crm\BenefitsModule\BenefitsModule())
 
+	- Crm\BenefitsModule\Components\UserBenefitsListing\UserBenefitsListing
