@@ -83,7 +83,7 @@ docker compose up
 docker compose exec crm /bin/bash
 ```
 
-7. Run all of these commands
+7. Run all of these commands individually
 ```bash
 chmod -R a+rw temp log content
 composer install
