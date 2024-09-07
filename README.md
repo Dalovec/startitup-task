@@ -27,6 +27,7 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 - [ ] Add a way to translate benefit content
 - [ ] Custom styling for templates relating to this module
 - [ ] Write tests
+- [ ] Handle secure file uploads
 
 ---
 
