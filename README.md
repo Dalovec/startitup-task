@@ -29,6 +29,8 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 - [ ] Write tests
 - [ ] Handle secure file uploads
 - [ ] Implement API and User Data Provider
+- [ ] Add a way to see deleted benefits
+- [ ] Add a way to keep history of benefit - user relations without blocking user from choosing a new one
 
 ---
 
