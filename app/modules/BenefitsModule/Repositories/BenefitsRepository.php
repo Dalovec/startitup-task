@@ -27,7 +27,7 @@ class BenefitsRepository extends Repository
      */
     final public function all(): \Crm\ApplicationModule\Models\Database\Selection
     {
-        return $this->getTable()->where('deleted IS NOT TRUE');
+        return $this->getTable()->where('is_deleted IS FALSE');
     }
 
     final public function find($id): ?\Crm\ApplicationModule\Models\Database\ActiveRow
@@ -45,7 +45,7 @@ class BenefitsRepository extends Repository
 
     final public function delete(\Nette\Database\Table\ActiveRow &$row): void
     {
-        $this->getTable()->where(['id' => $row->id])->delete();
+        $this->getTable()->where(['id' => $row->id])->update(['is_deleted' => true]);
     }
 
 }
