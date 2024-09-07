@@ -25,7 +25,7 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 - [ ] Translate templates - I don't think this is yet possible in the skeleton
 - [ ] Make it possible to have the benefit limit dynamically set by the admins 
 - [ ] Add a way to translate benefit content
-- [ ] Custom styling for templates relating to this module - I kinda suck at Bootstrap and didn't get to wrtie custom CSS
+- [ ] Custom styling for templates relating to this module - I kinda suck at Bootstrap and didn't have time to write custom CSS
 - [ ] Write tests
 - [ ] Handle secure file uploads
 - [ ] Implement API and User Data Provider
