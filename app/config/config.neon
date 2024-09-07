@@ -23,6 +23,7 @@ extensions:
 	- Crm\DashboardModule\DI\DashboardModuleExtension
 	users: Crm\UsersModule\DI\UsersModuleExtension
 	- Crm\SubscriptionsModule\DI\SubscriptionsModuleExtension
+	- Crm\BenefitsModule\DI\BenefitsModuleExtension
 	- Crm\SegmentModule\DI\SegmentModuleExtension
 	- Crm\PaymentsModule\DI\PaymentsModuleExtension
 	- Crm\SalesFunnelModule\DI\SalesFunnelModuleExtension
@@ -95,14 +96,3 @@ database:
 		password: @environmentConfig::get('CRM_DB_PASS')
 		options:
 			lazy: yes
-
-services:
-	benefitsRepository: Crm\BenefitsModule\Repositories\BenefitsRepository
-	userBenefitsRepository: Crm\BenefitsModule\Repositories\UserBenefitsRepository
-	benefitFormFactory: Crm\BenefitsModule\Forms\BenefitFormFactory
-
-	moduleManager:
-		setup:
-			- addModule(Crm\BenefitsModule\BenefitsModule())
-
-	- Crm\BenefitsModule\Components\UserBenefitsListing\UserBenefitsListing

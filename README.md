@@ -22,10 +22,10 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 
 #### What I didn't manage to do
 
-- [ ] Translate templates
-- [ ] Add a way to handle multiple benefits for one user 
+- [ ] Translate templates - I don't think this is yet possible in the skeleton
+- [ ] Make it possible to have the benefit limit dynamically set by the admins 
 - [ ] Add a way to translate benefit content
-- [ ] Custom styling for templates relating to this module
+- [ ] Custom styling for templates relating to this module - I kinda suck at Bootstrap and didn't get to wrtie custom CSS
 - [ ] Write tests
 - [ ] Handle secure file uploads
 - [ ] Implement API and User Data Provider
@@ -36,7 +36,7 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 
 - Currently, no translations are implemented for the templates
 - Photos are not local (Did not implement file upload functionality)
-- No fully tested
+- Not tested
 - Functionality to add translations to the Benefit content is missing
 
 ---
