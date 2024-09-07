@@ -24,5 +24,6 @@ class BenefitsModule extends \Crm\ApplicationModule\CrmModule
     {
         $router->addRoute('/benefits', 'Benefits:BenefitsAdmin:default');
         $router->addRoute('/benefits/edit/<id>', 'Benefits:BenefitsAdmin:edit');
+        $router->addRoute('/benefits/new', 'Benefits:BenefitsAdmin:new');
     }
 }

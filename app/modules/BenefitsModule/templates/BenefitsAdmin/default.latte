@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <h1>
             Benefity
-            <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-sliders-h"></i>  {_'segment.new.header'}</a>
+            <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-sliders-h"></i>New Benefit</a>
         </h1>
         <div class="row">
             {foreach $benefits as $benefit}
@@ -16,7 +16,7 @@
                         <div class="caption">
                             <h3>{$benefit->name} - {if $benefit->start_date < $timeNow && $timeNow < $benefit->end_date}<span class="text-success">Active{else}<span class="text-danger">Inactive{/if}</span></h3>
                             <p>{$benefit->code}</p>
-                            <p><a href="/benefits/edit/{$benefit->id}" class="btn btn-success" role="button">Edit</a> <a href="#" class="btn btn-danger" role="button">Delete</a></p>
+                            <p><a href="/benefits/edit/{$benefit->id}" class="btn btn-success" role="button">Edit</a> <a n:href="delete! $benefit->id" class="btn btn-danger" role="button">Delete</a></p>
                         </div>
                     </div>
                 </div>

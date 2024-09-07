@@ -2,9 +2,11 @@
 
 namespace Crm\BenefitsModule\Repositories;
 
+use Crm\ApplicationModule\Models\Database\ActiveRow;
 use Crm\ApplicationModule\Models\Database\Repository;
 use Crm\ApplicationModule\Repositories\AuditLogRepository;
 use Nette\Database\Explorer;
+use Nette\Utils\ArrayHash;
 
 class BenefitsRepository extends Repository
 {
@@ -28,4 +30,17 @@ class BenefitsRepository extends Repository
         $result = $this->getTable()->where(['id' => $id])->fetch();
         return $result;
     }
+
+    final public function add(ArrayHash $data): ActiveRow
+    {
+//        dump($data);
+        $row = $this->getTable()->insert($data);
+        return $row;
+    }
+
+    final public function delete(\Nette\Database\Table\ActiveRow &$row): void
+    {
+        $this->getTable()->where(['id' => $row->id])->delete();
+    }
+
 }

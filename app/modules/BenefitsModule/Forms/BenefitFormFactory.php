@@ -7,6 +7,8 @@ use Nette\Application\UI\Form;
 
 class BenefitFormFactory
 {
+    public $onUpdate;
+    public $onSave;
     public function __construct(
         private BenefitsRepository $benefitsRepository,
     ){
@@ -17,6 +19,7 @@ class BenefitFormFactory
         $form = new Form();
 
         $form->setRenderer(new \Tomaj\Form\Renderer\BootstrapRenderer());
+        $form->addHidden('id');
         $form->addText('name', 'Name');
         $form->addText('code', 'Code');
         $form->addText('photo', 'Photo Url');
@@ -26,6 +29,7 @@ class BenefitFormFactory
         if ($id) {
             $benefit = $this->benefitsRepository->find($id);
             $form->setDefaults([
+                'id' => $benefit->id,
                 'name' => $benefit->name,
                 'code' => $benefit->code,
                 'photo' => $benefit->photo,
@@ -33,8 +37,24 @@ class BenefitFormFactory
                 'end_date' => $benefit->end_date,
             ]);
         }
+
         $form->addSubmit('save', 'Save');
-        // TODO: add onSubmit event
+        $form->onSuccess[] = [$this, 'formSucceeded'];
+
         return $form;
+    }
+
+    public function formSucceeded($form, $values)
+    {
+        $id = $values['id'];
+        if ($id){
+            $row = $this->benefitsRepository->find($id);
+            $this->benefitsRepository->update($row, $values);
+            $this->onUpdate->__invoke($row);
+        }
+        else {
+            $row = $this->benefitsRepository->add($values);
+            $this->onSave->__invoke($row);
+        }
     }
 }

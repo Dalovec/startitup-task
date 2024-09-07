@@ -32,9 +32,40 @@ class BenefitsAdminPresenter extends \Crm\AdminModule\Presenters\AdminPresenter
         $this->template->benefit = $this->benefitsRepository->find($id);
     }
 
+    public function renderNew(): void
+    {
+        $this->template->timeNow = new \DateTime();
+    }
+
+    protected function createComponentBenefitForm()
+    {
+        $form = $this->benefitFormFactory->create();
+
+        $this->benefitFormFactory->onSave = function($benefit) {
+//            dump($benefit);
+//            $this->flashMessage("$benefit->name Benefit created", 'info');
+            $this->redirect(':Benefits:BenefitsAdmin:default');
+        };
+
+        return $form;
+    }
+
+    public function handleDelete($id):void
+    {
+        $row = $this->benefitsRepository->find($id);
+        $this->benefitsRepository->delete($row);
+        $this->flashMessage('Benefit deleted', 'info');
+        $this->redirect(':Benefits:BenefitsAdmin:default');
+    }
+
     protected function createComponentEditBenefitForm()
     {
         $form = $this->benefitFormFactory->create($this->params['id']);
+
+        $this->benefitFormFactory->onUpdate = function($benefit) {
+            $this->flashMessage("$benefit->name Benefit updated", 'info');
+            $this->redirect(':Benefits:BenefitsAdmin:default');
+        };
 
         return $form;
     }
