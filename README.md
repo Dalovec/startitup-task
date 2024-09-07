@@ -20,7 +20,7 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 - [X] Show the chosen benefit code to the user
 - [X] Add a widget to user-detail showing the chosen benefit
 
-#### Not yet implemented
+#### What I didn't manage to do
 
 - [ ] Translate templates
 - [ ] Add a way to handle multiple benefits for one user 
@@ -28,6 +28,7 @@ This is a take home assignment for the [StartItUp](https://startitup.sk/).
 - [ ] Custom styling for templates relating to this module
 - [ ] Write tests
 - [ ] Handle secure file uploads
+- [ ] Implement API and User Data Provider
 
 ---
 
