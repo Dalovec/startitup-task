@@ -1,3 +1,14 @@
-<div style="font-size:0.8em; margin-left:1em; display:inline">
-    HELLO WORLD
+<div class="" n:if="isset($benefit)">
+    <div class="thumbnail">
+        <img src="{$benefit->photo}" alt="..." style="width: 300px; height: 200px; padding: 20px;">
+        <div class="caption">
+            <h3 style="font-weight: 900">{$benefit->name}</h3>
+            <p>{$benefit->code}</p>
+            <p><a n:href="unclaim! $userId" class="btn btn-danger" role="button">Remove User's Benefit</a></p>
+        </div>
+    </div>
+</div>
+<div class="bs-callout bs-callout-info" n:if="!isset($benefit)">
+    <h4>No data</h4>
+    <p class="lead">This user doesn't have any benefits.</p>
 </div>
