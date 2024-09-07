@@ -20,9 +20,14 @@ class BenefitsRepository extends Repository
         $this->auditLogRepository = $auditLogRepository;
     }
 
+    /**
+     * Returns all benefits that are not deleted.
+     *
+     * @return \Crm\ApplicationModule\Models\Database\Selection
+     */
     final public function all(): \Crm\ApplicationModule\Models\Database\Selection
     {
-        return $this->getTable()->where('name IS NOT NULL');
+        return $this->getTable()->where('deleted IS NOT TRUE');
     }
 
     final public function find($id): ?\Crm\ApplicationModule\Models\Database\ActiveRow
