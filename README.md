@@ -62,7 +62,7 @@ cd /path/to/your/project
 ```bash
 cp .env.example .env
 cp app/config/config.local.example.neon app/config/config.local.neon
-cp docker compose.override.example.yml docker compose.override.yml
+cp docker-compose.override.example.yml docker-compose.override.yml
 ```
 
 4. Default host is `http://crm.press`, but if it doesn't work add a pointer in yourt `/etc/hosts` file
