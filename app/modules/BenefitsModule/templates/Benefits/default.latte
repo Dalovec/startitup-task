@@ -7,7 +7,7 @@
     <div class="row">
         {foreach $benefits as $benefit}
             {if $benefit->start_date < $timeNow && $timeNow < $benefit->end_date}
-                <div class="col-sm-6 col-md-3">
+                <div class="col-lg-6">
                     <div class="thumbnail" {if $isClaimed && $isClaimed === $benefit->id}style="border: 3px solid #5cb85c"{/if}>
                         <img src="{$benefit->photo}" alt="..." style="width: 300px; height: 200px; padding: 20px;">
                         <div class="caption">
